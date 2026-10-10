@@ -10,6 +10,17 @@ use App\Http\Controllers\MatakuliahController;
 //memanggil atau menggunakan MatakuliahController dari Laravel
 use App\Http\Controllers\HomeController;
 
+//memanggil atau menggunakan QuestionController dari Laravel
+use App\Http\Controllers\QuestionController;
+
+//Route::get() artinya kalo ada org membuka url dengan ini lewat browser, tolong tampilkan sesuatu
+// 'question/store' adalah url yang akan diakses oleh user
+//[QuestionController::class, 'store']) artinya jalankan fungsi store yang ada di dalam QuestionController
+Route::post('question/store', [QuestionController::class, 'store'])
+		->name('question.store'); //membuat nama alias pada url alih alih memakai question/store, menjadi question.store
+
+
+
 //Route::get() artinya kalo ada org membuka url dengan ini lewat browser, tolong tampilkan sesuatu
 // '/home' adalah url yang akan diakses oleh user
 Route::get('/home', [HomeController::class, 'index']);
