@@ -27,10 +27,16 @@ class QuestionController extends Controller
      */
     public function store(Request $request) //$request adalah parameter unutk menangkap data luar
     {
-        dd($request->all()) ;
-        //dd() adalah dumb and die
-        //dumb artinya menampilkan semua data secara mentah
-        //die artinya hentikan proses eksekusi program setelah menampilkan data
+        //dd($request->all());
+
+        //->input('nama') artinya mengambil data bernama 'nama' yang dikirimkan dari pengguna
+        //$data['nama'] atinya menyimpannya ke dalam sebuah array variabel bernama $data dengan kunci (key) 'nama'
+        $data['nama'] = $request->input('nama');
+        $data['email'] = $request->input('email'); //menangkap data
+        $data['pertanyaan'] = $request->input('pertanyaan'); //menangkap data inputan pertanyaan
+
+        //buka tampilan dan mengirim data ke view home-question-respon.blade.php
+        return view('home-question-respon', $data);
     }
 
     /**
