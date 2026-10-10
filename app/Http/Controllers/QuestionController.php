@@ -29,6 +29,16 @@ class QuestionController extends Controller
     {
         //dd($request->all());
 
+        $request->validate([ //melakukan validasi terhadap data yang dikirim oleh pengguna
+		    'nama'  => 'required|max:10', //required artinya wajib diisi, max:10 artinya panjang karakter maksimal 10 huruf
+		    'email' => ['required','email'], //[] sama persis dengan 'required|email' artinya wajib diisi dan harus berbentuk
+                                            //email
+		    'pertanyaan' => 'required|max:300|min:8', //wajib diisi, maksimal 300 karakter, minimal 8 karakter
+		],[
+            'nama.required' => 'Nama tidak boleh kosong', //ika inputan bernama nama melanggar aturan required
+            'email.email' => 'Email tidak valid' //Jika inputan bernama email melanggar aturan email (formatnya salah)
+        ]);
+
         //->input('nama') artinya mengambil data bernama 'nama' yang dikirimkan dari pengguna
         //$data['nama'] atinya menyimpannya ke dalam sebuah array variabel bernama $data dengan kunci (key) 'nama'
         $data['nama'] = $request->input('nama');

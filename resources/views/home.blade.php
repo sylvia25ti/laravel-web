@@ -156,6 +156,17 @@
                 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Form Pertanyaan</h5>
+
+        @if ($errors->any())   <!-- Jika ada error apapun-->
+            <div class="alert alert-danger"> <!-- tag HTML biasa untuk membuat kotak peringatan berwarna merah -->
+                <ul>                     <!-- Unordered list -->
+                    @foreach ($errors->all() as $error) <!-- setiap ada error masukan ke variabel error -->
+                        <li>{{ $error }}</li> <!--setiap satu pesan error akan dicetak menggunakan sintaks Blade -->
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <!--Jika diklik maka akan diarahkan ke route question.store -->
         <form action="{{ route('question.store') }}" method="POST">
 	@csrf <!--Wajib untuk keamanan agar tidak bisa dikasih virus -->
@@ -163,15 +174,15 @@
         <form action="" method="POST">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" name="nama">
+                <input type="text" class="form-control" name="nama" values="{{ old('nama') }}">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" name="email">
+                <input type="text" class="form-control" name="email" value="{{ old('email') }}">
             </div>
             <div class="mb-3">
                 <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                <textarea class="form-control" rows="4" name="pertanyaan"></textarea>
+                <textarea class="form-control" rows="4" name="pertanyaan">{{ old('pertanyaan') }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
         </form>
