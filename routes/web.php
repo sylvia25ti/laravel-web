@@ -7,6 +7,13 @@ use App\Http\Controllers\MahasiswaController;
 
 use App\Http\Controllers\MatakuliahController;
 
+//memanggil atau menggunakan MatakuliahController dari Laravel
+use App\Http\Controllers\HomeController;
+
+//Route::get() artinya kalo ada org membuka url dengan ini lewat browser, tolong tampilkan sesuatu
+// '/home' adalah url yang akan diakses oleh user
+Route::get('/home', [HomeController::class, 'index']);
+
 Route::get('/pcr', function () {
     return 'Selamat Datang di Website Kampus PCR!';
 });
