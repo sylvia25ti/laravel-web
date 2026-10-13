@@ -13,6 +13,19 @@ use App\Http\Controllers\HomeController;
 //memanggil atau menggunakan QuestionController dari Laravel
 use App\Http\Controllers\QuestionController;
 
+use App\Http\Controllers\DashboardController;
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::post('question/store', [QuestionController::class, 'store'])
+        ->name('question.store');
+
+Route::get('dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
+
+
+
+
 //Route::get() artinya kalo ada org membuka url dengan ini lewat browser, tolong tampilkan sesuatu
 // 'question/store' adalah url yang akan diakses oleh user
 //[QuestionController::class, 'store']) artinya jalankan fungsi store yang ada di dalam QuestionController
