@@ -15,6 +15,9 @@ use App\Http\Controllers\QuestionController;
 
 use App\Http\Controllers\DashboardController;
 
+use App\Http\Controllers\PelangganController;
+Route::resource('pelanggan', PelangganController::class);
+
 Route::get('/', [HomeController::class, 'index']);
 
 Route::post('question/store', [QuestionController::class, 'store'])
@@ -22,9 +25,6 @@ Route::post('question/store', [QuestionController::class, 'store'])
 
 Route::get('dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
-
-
-
 
 //Route::get() artinya kalo ada org membuka url dengan ini lewat browser, tolong tampilkan sesuatu
 // 'question/store' adalah url yang akan diakses oleh user
