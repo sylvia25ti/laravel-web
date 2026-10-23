@@ -99,7 +99,7 @@
                     </a>
                 </li>
 
-<li class="nav-item  active ">
+        <li class="nav-item  active ">
 		    <a href="{{route('pelanggan.index')}}" class="nav-link">
 		        <span class="sidebar-icon">
 		            <svg class="icon icon-xs me-2" data-slot="icon" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -324,7 +324,7 @@
                                     <!-- Gender -->
                                     <div class="mb-3">
                                         <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select" name = "gender">
+                                        <select id="gender" class="form-select" name = "gender">
                                             <option value="">-- Pilih --</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>

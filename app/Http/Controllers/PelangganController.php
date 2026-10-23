@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pelanggan;
+use App\Models\Pelanggan; //memanggil model Pelanggan agar bisa digunakan di controller ini
 
 class PelangganController extends Controller
 {
@@ -18,8 +18,13 @@ class PelangganController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(){
+    public function create(){ //menampilkan halaman form input data
+
+        //membuka file bernama create.blade.php yang terletak
+        //di dalam folder resources/views/admin/pelanggan/
 		return view('admin.pelanggan.create');
+        // admin.pelanngan,create    titik adalah pengganti garis
+        //miring (/) untuk menandakan folder di dalam folder views
     }
 
     /**
@@ -27,19 +32,20 @@ class PelangganController extends Controller
      */
     public function store(Request $request){
 
-		//dd($request->all())
+		//dd($request->all()); // Mengintip data form sebelum disimpan (digunakan untuk tahap uji)
 
-		$data['first_name'] = $request->first_name;
+		$data['first_name'] = $request->first_name; // Mengambil data dari form input dengan nama first_name
 		$data['last_name'] = $request->last_name;
 		$data['birthday'] = $request->birthday;
 		$data['gender'] = $request->gender;
 		$data['email'] = $request->email;
 		$data['phone'] = $request->phone;
 
-		Pelanggan::create($data);
+		Pelanggan::create($data); //Memerintahkan Model Pelanggan untuk memasukkan  ($data) ke dalam tabel database
 
+        // Mengarahkan ke route pelanggan.index dengan menampilkan pesan sukses
 		return redirect()->route('pelanggan.index')->with('success','Penambahan Data Berhasil!');
-}
+    }
 
     /**
      * Display the specified resource.
