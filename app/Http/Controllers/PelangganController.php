@@ -103,8 +103,15 @@ class PelangganController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    // menerima kiriman  $id (nomor identitas unik) pelanggan yang mau dihapus
     public function destroy(string $id)
     {
-        //
+    $pelanggan = Pelanggan::findOrFail($id); //menyuruh Model Pelanggan untuk
+                          // mengambil data dari tabel database berdasarkan id
+
+    $pelanggan->delete(); //menyuruh Model Pelanggan untuk menghapus data dari tabel database berdasarkan id
+    return redirect()->route('pelanggan.index')->with('success', 'Data berhasil dihapus');
+    // mengarahkan ke route pelanggan.index dengan menampilkan pesan sukses
     }
+
 }
