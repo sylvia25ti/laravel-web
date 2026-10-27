@@ -9,6 +9,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PortofolioController;
+
+
+
+// Route untuk CRUD Portofolio
+Route::resource('portofolio', PortofolioController::class);
+
+
 
 
 // ==========================================
@@ -88,3 +96,7 @@ Route::get('/mahasiswa/{param1}', [MahasiswaController::class, 'show']);
 Route::get('/matakuliah/show/{kode?}', [MatakuliahController::class, 'show']);
 // tanda {} menandakan variabel dinamis yang nilainya bisa berubah-ubah sedangkan
 // ? menandakan bahwa parameter ini bersifat opsional (tidak wajib di isi)
+
+
+
+
