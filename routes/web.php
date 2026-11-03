@@ -10,7 +10,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PortofolioController;
-
+use App\Http\Controllers\UserController;
 
 
 // Route untuk CRUD Portofolio
@@ -18,7 +18,7 @@ Route::resource('portofolio', PortofolioController::class);
 
 
 
-
+Route::resource('user', UserController::class);
 // ==========================================
 // RUTE DASHBOARD & UTAMA
 // ==========================================
