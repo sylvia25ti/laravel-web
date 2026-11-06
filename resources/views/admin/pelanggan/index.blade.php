@@ -1,5 +1,5 @@
-@extends('layouts.admin.app')
-@section('content')
+@extends('layouts.admin.app') <!-- memakai kerangka utama -->
+@section('content')         <!--isi yang ingin dimasukkan ke wadah kosong tersebut -->
         {{--Start main content --}}
         <div class="py-4">
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block">

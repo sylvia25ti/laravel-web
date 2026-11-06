@@ -25,20 +25,14 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(){ // Menampilkan halaman form input data
-
-        // Membuka file bernama create.blade.php yang terletak
-        // di dalam folder resources/views/admin/user/
+    public function create(){
         return view('admin.user.create');
-        // admin.user.create titik adalah pengganti garis
-        // miring (/) untuk menandakan folder di dalam folder views
     }
 
     /**
      * Store a newly created resource in storage.
      */
      public function store(Request $request){
-
         $request->validate([
             'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email',
@@ -48,10 +42,11 @@ class UserController extends Controller
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
+        //$request->password berfungsi untuk mengambil data password mentah yang diketik oleh
+        //pengguna melalui form
+        //Hash::make($request->password) berfungsi untuk mengenkripsi password mentah
 
-        User::create($data);
-
-        // PASTIKAN BARIS INI MENGARAH KE user.index AGAR KEMBALI KE TABEL DATA
+        User::create($data); //Memerintahkan model User untuk memasukkan ($data) ke dalam tabel database
         return redirect()->route('user.index')->with('success', 'Penambahan Data Berhasil!');
     }
 
@@ -86,25 +81,31 @@ class UserController extends Controller
     // string $id adalah nomor id user yang akan diubah datanya
      public function update(Request $request, string $id)
     {
-        $user_id = $id;
-        $user = User::findOrFail($user_id);
+        $user_id = $id; //memasukkan no id ke dalam variabel $user_id
+        $user = User::findOrFail($user_id); //menyuruh Model User
+        //untuk mengambil data dari tabel database berdasarkan id
 
         // Terapkan validasi untuk proses update (email dikondisikan agar tidak bentrok dengan ID sendiri)
         $request->validate([
             'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed', // nullable karena password tidak wajib diisi saat edit
+            'email' => 'required|email|unique:users,email,' . $user->id, //.' . $user->id dinamakan Ignore ID
+                                                                        // (Mengabaikan ID tertentu)
+            'password' => 'nullable|string|min:8|confirmed', // nullable karena password tidak wajib diisi
+                                                            //saat edit
         ]);
 
-        $user->name = $request->name;
+        $user->name = $request->name; //ambil data baru kemudian timpa data lama di kolom name
         $user->email = $request->email;
 
-        if ($request->filled('password')) {
+        if ($request->filled('password')) { //apakah user mengetik password baru? Jika iya, maka lakukan
+                                            // enkripsi dan simpan ke database
             $user->password = Hash::make($request->password);
+            // digunakan untuk mengenkripsi (mengacak) password baru yang diketik user
         }
 
-        $user->save();
+        $user->save(); //menyuruh Model User untuk menyimpan data baru ke dalam tabel database
         return redirect()->route('user.index')->with('success', 'Perubahan Data Berhasil!');
+        // Mengarahkan ke route user.index dengan menampilkan pesan sukses
     }
 
     /**
@@ -116,9 +117,8 @@ class UserController extends Controller
         // Menyuruh Model User untuk mengambil data dari tabel database berdasarkan id
         $user = User::findOrFail($id);
 
-        // Menyuruh Model User untuk menghapus data dari database sesuai instruksi $user->delete() di gambar
+        // Menyuruh Model User untuk menghapus data dari database
         $user->delete();
-
         return redirect()->route('user.index')->with('success', 'Data berhasil dihapus');
         // Mengarahkan ke route user.index dengan menampilkan pesan sukses
     }

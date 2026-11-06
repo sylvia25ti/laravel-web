@@ -25,6 +25,16 @@
             </div>
         </div>
 
+        @if ($errors->any()) <!-- Jika ketemu error apapun-->
+        <div class="alert alert-danger"> <!--tag html biasa untuk membuat kotak peringatan berwarna merah -->
+            <ul>
+                @foreach ($errors->all() as $error) <!-- Setiap ada error masukkan ke variabel error-->
+                    <li>{{ $error }}</li> <!--Setiap satu pesan error akan dicetak menggunakan sintaks blade-->
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
         <div class="row">
             <div class="col-12 mb-4">
                 <div class="card border-0 shadow components-section">
@@ -37,13 +47,13 @@
                                     <!-- Name -->
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Name</label>
-                                        <input type="text" id="name" class="form-control" name="name" required>
+                                        <input type="text" id="name" class="form-control" name="name" required value="{{ old('name') }}">
                                     </div>
 
                                     <!-- Email -->
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" id="email" class="form-control" name="email" required>
+                                        <input type="email" id="email" class="form-control" name="email" required value="{{ old('email') }}">
                                     </div>
                                 </div>
 
