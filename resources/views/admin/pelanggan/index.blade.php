@@ -64,7 +64,7 @@
                                                 <a href="{{ request()->fullUrlWithQuery(['search' => null]) }}"
                                                     class="btn btn-outline-secondary ml-3" id="clear-search"> Clear</a>
                                             @endif
-                                            
+
                                             <svg class="icon icon-xxs" fill="currentColor" viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
